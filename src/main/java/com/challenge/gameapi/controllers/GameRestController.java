@@ -7,6 +7,7 @@ import com.challenge.gameapi.model.User;
 import com.challenge.gameapi.repository.GameRepository;
 import com.challenge.gameapi.service.GameService;
 import com.challenge.gameapi.util.CsvUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Slf4j
 @RestController
 public class GameRestController {
 
@@ -32,14 +34,15 @@ public class GameRestController {
         return new ModelAndView("redirect:/swagger-ui.html#/");
     }
 
-    @PostMapping(value = "/upload", consumes = "text/csv")
-    public void uploadSimple(@RequestBody InputStream body) throws IOException {
-        gameService.saveAll(CsvUtils.read(Game.class, body));
-    }
-
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
-    public void uploadMultipart(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<SuccessMessage> uploadMultipart(@RequestParam("file") MultipartFile file) throws IOException {
         gameService.saveAll(CsvUtils.read(Game.class, file.getInputStream()));
+
+        HttpStatus httpStatus = HttpStatus.CREATED;
+        SuccessMessage successMessage = new SuccessMessage(200,"File successfully uploaded",httpStatus);
+        return new ResponseEntity<>(successMessage,httpStatus);
+
+
     }
 
     @GetMapping(value="/games")

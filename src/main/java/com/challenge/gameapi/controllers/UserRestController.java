@@ -1,8 +1,11 @@
 package com.challenge.gameapi.controllers;
 
+import com.challenge.gameapi.message.SuccessMessage;
 import com.challenge.gameapi.model.User;
 import com.challenge.gameapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,10 +26,12 @@ public class UserRestController {
     }
 
     @PostMapping("/users")
-    public User adduser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email){
+    public ResponseEntity<SuccessMessage> adduser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email){
 
         Long userId = userService.saveUser(username, password, email);
-        return userService.getUserById(userId);
+        HttpStatus httpStatus = HttpStatus.CREATED;
+        SuccessMessage successMessage = new SuccessMessage(200,"User created successfully",httpStatus);
+        return new ResponseEntity<SuccessMessage>(successMessage,httpStatus);
     }
 
 }

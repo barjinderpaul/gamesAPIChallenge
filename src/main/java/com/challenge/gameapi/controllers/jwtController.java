@@ -1,5 +1,6 @@
 package com.challenge.gameapi.controllers;
 
+import com.challenge.gameapi.exceptions.InvalidArgumentException;
 import com.challenge.gameapi.jwtModels.AuthenticationRequest;
 import com.challenge.gameapi.jwtModels.AuthenticationResponse;
 import com.challenge.gameapi.service.MyUserDetailsService;
@@ -34,7 +35,7 @@ public class jwtController {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(), authenticationRequest.getPassword()));
 
         }catch (BadCredentialsException e){
-            throw new Exception("Wrong username and password");
+            throw new InvalidArgumentException("Wrong username and password");
         }
 
         final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
