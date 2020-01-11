@@ -28,5 +28,18 @@ public class GameServiceImplementation  implements GameService {
         return gameRepository.findAllByTitle(title);
     }
 
+    @Override
+    public void saveGame(String title, String platform, String score, String genre, Character editorsChoice) {
+        Game game = new Game();
+        game.setTitle(title);
+        game.setPlatform(platform);
+        game.setScore(Double.parseDouble(score));
+        game.setGenre(genre);
+        game.setEditors_choice(editorsChoice);
+
+        gameRepository.save(game);
+
+    }
+
 
 }

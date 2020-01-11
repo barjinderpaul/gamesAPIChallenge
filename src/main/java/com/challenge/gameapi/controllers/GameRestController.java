@@ -43,4 +43,14 @@ public class GameRestController {
             return gameService.findAllByTitle(title);
         }
     }
+
+    @PostMapping(value = "/games")
+    public void createGame(@RequestParam(value = "title", required = false) String title,
+                           @RequestParam(value = "score", required = false) String score,
+                           @RequestParam(value = "platform", required = false) String platform,
+                           @RequestParam(value = "genre", required = false) String genre,
+                           @RequestParam(value = "editorsChoice", required = false) Character editorsChoice) {
+
+        gameService.saveGame(title, platform, score, genre, editorsChoice);
+    }
 }
