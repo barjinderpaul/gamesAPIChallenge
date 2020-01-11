@@ -1,4 +1,4 @@
-package com.challenge.gameapi.controllers;
+package com.challenge.gameapi.controller;
 
 import com.challenge.gameapi.message.SuccessMessage;
 import com.challenge.gameapi.model.User;

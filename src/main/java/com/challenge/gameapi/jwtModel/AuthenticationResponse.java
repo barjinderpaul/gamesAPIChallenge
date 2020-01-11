@@ -1,4 +1,4 @@
-package com.challenge.gameapi.jwtModels;
+package com.challenge.gameapi.jwtModel;
 
 public class AuthenticationResponse {
     private final String jwt;

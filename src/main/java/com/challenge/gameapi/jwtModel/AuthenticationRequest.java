@@ -1,4 +1,4 @@
-package com.challenge.gameapi.jwtModels;
+package com.challenge.gameapi.jwtModel;
 
 public class AuthenticationRequest {
     private String username;

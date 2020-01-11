@@ -1,8 +1,8 @@
-package com.challenge.gameapi.controllers;
+package com.challenge.gameapi.controller;
 
-import com.challenge.gameapi.exceptions.InvalidArgumentException;
-import com.challenge.gameapi.jwtModels.AuthenticationRequest;
-import com.challenge.gameapi.jwtModels.AuthenticationResponse;
+import com.challenge.gameapi.exception.InvalidArgumentException;
+import com.challenge.gameapi.jwtModel.AuthenticationRequest;
+import com.challenge.gameapi.jwtModel.AuthenticationResponse;
 import com.challenge.gameapi.service.CustomUserDetailsService;
 import com.challenge.gameapi.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

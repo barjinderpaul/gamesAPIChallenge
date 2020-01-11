@@ -1,15 +1,13 @@
 package com.challenge.gameapi.service;
 
-import com.challenge.gameapi.exceptions.InvalidArgumentException;
+import com.challenge.gameapi.exception.InvalidArgumentException;
 import com.challenge.gameapi.model.User;
 import com.challenge.gameapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class UserServiceImplementation implements UserService {

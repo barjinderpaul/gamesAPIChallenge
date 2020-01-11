@@ -1,6 +1,6 @@
 package com.challenge.gameapi.service;
 
-import com.challenge.gameapi.exceptions.InvalidArgumentException;
+import com.challenge.gameapi.exception.InvalidArgumentException;
 import com.challenge.gameapi.model.Game;
 import com.challenge.gameapi.repository.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;

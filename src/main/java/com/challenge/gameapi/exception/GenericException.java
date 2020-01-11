@@ -1,4 +1,4 @@
-package com.challenge.gameapi.exceptions;
+package com.challenge.gameapi.exception;
 
 import lombok.extern.slf4j.Slf4j;
 
