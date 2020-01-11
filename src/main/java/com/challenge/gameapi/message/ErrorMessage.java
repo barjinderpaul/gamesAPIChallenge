@@ -1,4 +1,4 @@
-package com.challenge.gameapi.exceptions;
+package com.challenge.gameapi.message;
 
 import lombok.Getter;
 import lombok.Setter;

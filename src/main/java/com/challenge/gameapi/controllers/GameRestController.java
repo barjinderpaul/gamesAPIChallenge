@@ -1,12 +1,15 @@
 package com.challenge.gameapi.controllers;
 
 
+import com.challenge.gameapi.message.SuccessMessage;
 import com.challenge.gameapi.model.Game;
 import com.challenge.gameapi.model.User;
 import com.challenge.gameapi.repository.GameRepository;
 import com.challenge.gameapi.service.GameService;
 import com.challenge.gameapi.util.CsvUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,38 +53,55 @@ public class GameRestController {
     }
 
     @PostMapping(value = "/games")
-    public void createGame(@RequestParam(value = "title", required = false) String title,
-                           @RequestParam(value = "score", required = false) String score,
-                           @RequestParam(value = "platform", required = false) String platform,
-                           @RequestParam(value = "genre", required = false) String genre,
-                           @RequestParam(value = "editorsChoice", required = false) String editorsChoice) {
+    public ResponseEntity<Object> createGame(@RequestParam(value = "title", required = false) String title,
+                                     @RequestParam(value = "score", required = false) String score,
+                                     @RequestParam(value = "platform", required = false) String platform,
+                                     @RequestParam(value = "genre", required = false) String genre,
+                                     @RequestParam(value = "editorsChoice", required = false) String editorsChoice) {
 
         gameService.saveGame(title, platform, score, genre, editorsChoice);
+
+        HttpStatus httpStatus = HttpStatus.CREATED;
+        SuccessMessage successMessage = new SuccessMessage(200,"Post created successfully",httpStatus);
+        return new ResponseEntity<>(successMessage,httpStatus);
     }
 
     @PutMapping(value = "/games/{id}")
-    public void updateGame(@PathVariable("id") String id,
+    public ResponseEntity<Object> updateGame(@PathVariable("id") String id,
                            @RequestParam(value = "title", required = false) String title,
                            @RequestParam(value = "score", required = false) String score,
                            @RequestParam(value = "platform", required = false) String platform,
                            @RequestParam(value = "genre", required = false) String genre,
                            @RequestParam(value = "editorsChoice", required = false) String editorsChoice){
         gameService.updateGame(id, title, platform, score, genre, editorsChoice);
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        SuccessMessage successMessage = new SuccessMessage(200,"Post updated successfully",httpStatus);
+        return new ResponseEntity<>(successMessage,httpStatus);
     }
 
     @PatchMapping(value = "/games/{id}")
-    public void updateGamePatch(@PathVariable("id") String id,
+    public ResponseEntity<Object> updateGamePatch(@PathVariable("id") String id,
                            @RequestParam(value = "title", required = false) String title,
                            @RequestParam(value = "score", required = false) String score,
                            @RequestParam(value = "platform", required = false) String platform,
                            @RequestParam(value = "genre", required = false) String genre,
                            @RequestParam(value = "editorsChoice", required = false) String editorsChoice){
         gameService.updateGamePatch(id, title, platform, score, genre, editorsChoice);
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        SuccessMessage successMessage = new SuccessMessage(200,"Post updated successfully",httpStatus);
+        return new ResponseEntity<>(successMessage,httpStatus);
     }
 
     @DeleteMapping(value = "/games/{id}")
-    public void deleteGame(@PathVariable("id") String id){
+    public ResponseEntity<Object> deleteGame(@PathVariable("id") String id){
         gameService.deleteGame(id);
+
+        HttpStatus httpStatus = HttpStatus.OK;
+        SuccessMessage successMessage = new SuccessMessage(200,"Post deleted successfully",httpStatus);
+        return new ResponseEntity<>(successMessage,httpStatus);
+
     }
 
 }
