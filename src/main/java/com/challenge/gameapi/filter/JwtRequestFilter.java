@@ -1,6 +1,6 @@
 package com.challenge.gameapi.filter;
 
-import com.challenge.gameapi.service.MyUserDetailsService;
+import com.challenge.gameapi.service.CustomUserDetailsService;
 import com.challenge.gameapi.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import java.io.IOException;
 public class JwtRequestFilter extends OncePerRequestFilter {
 
     @Autowired
-    MyUserDetailsService userDetailsService;
+    CustomUserDetailsService userDetailsService;
 
     @Autowired
     JwtUtil jwtUtil;

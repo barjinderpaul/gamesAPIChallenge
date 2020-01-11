@@ -1,7 +1,7 @@
 package com.challenge.gameapi.config;
 
 import com.challenge.gameapi.filter.JwtRequestFilter;
-import com.challenge.gameapi.service.MyUserDetailsService;
+import com.challenge.gameapi.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    MyUserDetailsService myUserDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     JwtRequestFilter jwtRequestFilter;
@@ -34,7 +34,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(myUserDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Override

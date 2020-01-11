@@ -3,7 +3,7 @@ package com.challenge.gameapi.controllers;
 import com.challenge.gameapi.exceptions.InvalidArgumentException;
 import com.challenge.gameapi.jwtModels.AuthenticationRequest;
 import com.challenge.gameapi.jwtModels.AuthenticationResponse;
-import com.challenge.gameapi.service.MyUserDetailsService;
+import com.challenge.gameapi.service.CustomUserDetailsService;
 import com.challenge.gameapi.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +23,7 @@ public class jwtController {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    MyUserDetailsService myUserDetailsService;
+    CustomUserDetailsService customUserDetailsService;
 
     @Autowired
     JwtUtil jwtUtil;
@@ -38,7 +38,7 @@ public class jwtController {
             throw new InvalidArgumentException("Wrong username and password");
         }
 
-        final UserDetails userDetails = myUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 
         final String jwt =jwtUtil.generateToken(userDetails);
         return ResponseEntity.ok(new AuthenticationResponse(jwt));
