@@ -30,7 +30,7 @@ public class GameRestController {
     }
 
     @PostMapping(value = "/upload", consumes = "multipart/form-data")
-    public ResponseEntity<SuccessMessage> uploadMultipart(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<SuccessMessage> uploadGameFileData(@RequestParam("file") MultipartFile file) throws IOException {
         log.info(getClass() + " file upload started");
 
         gameService.saveAll(CsvUtils.read(Game.class, file.getInputStream()));
@@ -64,17 +64,17 @@ public class GameRestController {
     }
 
     @PostMapping(value = "/games")
-    public ResponseEntity<Object> createGame(@RequestParam(value = "title", required = false) String title,
+    public ResponseEntity<Object> addGame(@RequestParam(value = "title", required = false) String title,
                                              @RequestParam(value = "score", required = false) String score,
                                              @RequestParam(value = "platform", required = false) String platform,
                                              @RequestParam(value = "genre", required = false) String genre,
                                              @RequestParam(value = "editorsChoice", required = false) String editorsChoice) {
 
-        log.info(getClass() + " creating new post ");
+        log.info(getClass() + " adding new game ");
         gameService.saveGame(title, platform, score, genre, editorsChoice);
-        log.info(getClass() + " new post created");
+        log.info(getClass() + " new game added");
         HttpStatus httpStatus = HttpStatus.CREATED;
-        SuccessMessage successMessage = new SuccessMessage(200, "Post created successfully", httpStatus);
+        SuccessMessage successMessage = new SuccessMessage(200, "Game created successfully", httpStatus);
         return new ResponseEntity<>(successMessage, httpStatus);
     }
 
@@ -91,7 +91,7 @@ public class GameRestController {
 
         log.info(getClass() + " successfully updated game with id: " + id);
         HttpStatus httpStatus = HttpStatus.OK;
-        SuccessMessage successMessage = new SuccessMessage(200, "Post updated successfully", httpStatus);
+        SuccessMessage successMessage = new SuccessMessage(200, "Game updated successfully", httpStatus);
         return new ResponseEntity<>(successMessage, httpStatus);
     }
 
@@ -108,7 +108,7 @@ public class GameRestController {
 
         log.info(getClass() + " successfully updated game with id : " + id);
         HttpStatus httpStatus = HttpStatus.OK;
-        SuccessMessage successMessage = new SuccessMessage(200, "Post updated successfully", httpStatus);
+        SuccessMessage successMessage = new SuccessMessage(200, "Game updated successfully", httpStatus);
         return new ResponseEntity<>(successMessage, httpStatus);
     }
 
@@ -118,10 +118,10 @@ public class GameRestController {
 
         gameService.deleteGame(id);
 
-        log.info(getClass() + " successfully deleted post with id : " + id);
+        log.info(getClass() + " successfully deleted game with id : " + id);
 
         HttpStatus httpStatus = HttpStatus.OK;
-        SuccessMessage successMessage = new SuccessMessage(200, "Post deleted successfully", httpStatus);
+        SuccessMessage successMessage = new SuccessMessage(200, "Game deleted successfully", httpStatus);
         return new ResponseEntity<>(successMessage, httpStatus);
 
     }

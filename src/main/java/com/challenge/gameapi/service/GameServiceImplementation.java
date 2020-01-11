@@ -141,19 +141,19 @@ public class GameServiceImplementation implements GameService {
 
         Game game = gameOptional.get();
 
-        if (isValidTitle(title)) {
+        if (title!= null && !title.trim().equals("")) {
             game.setTitle(title);
         }
-        if (isValidPlatform(platform)) {
+        if (platform!= null && !platform.trim().equals("")) {
             game.setPlatform(platform);
         }
-        if (isValidGenre(genre)) {
+        if (genre!= null && !genre.trim().equals("")) {
             game.setGenre(genre);
         }
-        if (isValidScore(score)) {
+        if (score!= null && !score.trim().equals("")) {
             game.setScore(Double.parseDouble(score));
         }
-        if (isValidEditorsChoice(editorsChoice)) {
+        if (editorsChoice!= null && !editorsChoice.trim().equals("")) {
             game.setEditors_choice(editorsChoice.toUpperCase().charAt(0));
         }
 
