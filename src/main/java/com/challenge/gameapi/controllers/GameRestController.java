@@ -49,7 +49,7 @@ public class GameRestController {
                            @RequestParam(value = "score", required = false) String score,
                            @RequestParam(value = "platform", required = false) String platform,
                            @RequestParam(value = "genre", required = false) String genre,
-                           @RequestParam(value = "editorsChoice", required = false) Character editorsChoice) {
+                           @RequestParam(value = "editorsChoice", required = false) String editorsChoice) {
 
         gameService.saveGame(title, platform, score, genre, editorsChoice);
     }
@@ -60,7 +60,7 @@ public class GameRestController {
                            @RequestParam(value = "score", required = false) String score,
                            @RequestParam(value = "platform", required = false) String platform,
                            @RequestParam(value = "genre", required = false) String genre,
-                           @RequestParam(value = "editorsChoice", required = false) Character editorsChoice){
+                           @RequestParam(value = "editorsChoice", required = false) String editorsChoice){
         gameService.updateGame(id, title, platform, score, genre, editorsChoice);
     }
 
@@ -70,7 +70,7 @@ public class GameRestController {
                            @RequestParam(value = "score", required = false) String score,
                            @RequestParam(value = "platform", required = false) String platform,
                            @RequestParam(value = "genre", required = false) String genre,
-                           @RequestParam(value = "editorsChoice", required = false) Character editorsChoice){
+                           @RequestParam(value = "editorsChoice", required = false) String editorsChoice){
         gameService.updateGamePatch(id, title, platform, score, genre, editorsChoice);
     }
 
