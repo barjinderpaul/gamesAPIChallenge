@@ -55,6 +55,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .antMatchers("/games").permitAll()
                     .antMatchers("/upload").permitAll()
                     .antMatchers("/users").permitAll()
+                    .antMatchers("/authenticate").permitAll()
                         .anyRequest()
                     .authenticated()
                     .and()
