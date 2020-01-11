@@ -55,7 +55,7 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .antMatchers("/games").permitAll()
                     .antMatchers("/upload").permitAll()
                         .anyRequest()
-                    .authenticated()
+                    .permitAll()
                     .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

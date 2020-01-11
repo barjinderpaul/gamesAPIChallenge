@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GameServiceImplementation  implements GameService {
@@ -40,6 +41,22 @@ public class GameServiceImplementation  implements GameService {
         gameRepository.save(game);
 
     }
+
+    @Override
+    public void updateGame(String id, String title, String platform, String score, String genre, Character editorsChoice) {
+        Long gameId = Long.parseLong(id);
+        Optional<Game> gameOptional = gameRepository.findById(gameId);
+
+        Game game = gameOptional.get();
+        game.setTitle(title);
+        game.setPlatform(platform);
+        game.setGenre(genre);
+        game.setScore(Double.parseDouble(score));
+        game.setEditors_choice(editorsChoice);
+
+        gameRepository.save(game);
+    }
+
 
 
 }
