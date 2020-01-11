@@ -72,5 +72,11 @@ public class GameServiceImplementation  implements GameService {
         gameRepository.save(game);
     }
 
+    @Override
+    public void deleteGame(String id) {
+        Long gameId = Long.parseLong(id);
+        gameRepository.deleteById(gameId);
+    }
+
 
 }

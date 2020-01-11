@@ -74,4 +74,9 @@ public class GameRestController {
         gameService.updateGamePatch(id, title, platform, score, genre, editorsChoice);
     }
 
+    @DeleteMapping(value = "/games/{id}")
+    public void deleteGame(@PathVariable("id") String id){
+        gameService.deleteGame(id);
+    }
+
 }
