@@ -170,5 +170,16 @@ public class GameServiceImplementation  implements GameService {
         gameRepository.deleteById(gameId);
     }
 
+    @Override
+    public Game getSingleGame(String id) {
+        isValidId(id);
+        Long gameId = Long.parseLong(id);
+        Optional<Game> gameOptional  = gameRepository.findById(gameId);
+        if(!gameOptional.isPresent()){
+            throw new InvalidArgumentException("Game with id : " + id + " not found");
+        }
+        return gameOptional.get();
+    }
+
 
 }

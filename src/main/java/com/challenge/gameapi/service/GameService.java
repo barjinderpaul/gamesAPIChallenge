@@ -14,5 +14,7 @@ public interface GameService {
     void updateGamePatch(String id, String title, String platform, String score, String genre, String editorsChoice);
 
     void deleteGame(String id);
+
+    Game getSingleGame(String id);
 }
 

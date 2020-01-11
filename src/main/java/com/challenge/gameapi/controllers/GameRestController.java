@@ -44,6 +44,11 @@ public class GameRestController {
         }
     }
 
+    @GetMapping(value = "/games/{id}")
+    public Game getSingleGame(@PathVariable("id")String id){
+        return gameService.getSingleGame(id);
+    }
+
     @PostMapping(value = "/games")
     public void createGame(@RequestParam(value = "title", required = false) String title,
                            @RequestParam(value = "score", required = false) String score,
