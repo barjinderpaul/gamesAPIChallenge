@@ -54,8 +54,9 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
                     .antMatchers("/swagger-ui.html").permitAll()
                     .antMatchers("/games").permitAll()
                     .antMatchers("/upload").permitAll()
+                    .antMatchers("/users").permitAll()
                         .anyRequest()
-                    .permitAll()
+                    .authenticated()
                     .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

@@ -17,12 +17,12 @@ public class UserRestController {
     UserService userService;
 
 
-    @GetMapping("/api/users")
+    @GetMapping("/users")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @PostMapping("/api/users")
+    @PostMapping("/users")
     public User adduser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email){
 
         Long userId = userService.saveUser(username, password, email);
