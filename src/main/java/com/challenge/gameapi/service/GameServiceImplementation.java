@@ -23,5 +23,10 @@ public class GameServiceImplementation  implements GameService {
        return gameRepository.findAll();
     }
 
+    @Override
+    public List<Game> findAllByTitle(String title) {
+        return gameRepository.findAllByTitle(title);
+    }
+
 
 }

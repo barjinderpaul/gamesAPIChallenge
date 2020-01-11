@@ -34,9 +34,13 @@ public class GameRestController {
     }
 
     @GetMapping(value="/games")
-    public List<Game> getAllGames(){
-        List<Game> games = gameService.findAll();
-        return games;
+    public List<Game> getAllGames(@RequestParam(value = "title",required = false )String title){
+        if(title == null ){
+            List<Game> games = gameService.findAll();
+            return games;
+        }
+        else {
+            return gameService.findAllByTitle(title);
+        }
     }
-
 }
