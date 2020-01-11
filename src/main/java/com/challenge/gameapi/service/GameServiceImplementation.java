@@ -57,6 +57,20 @@ public class GameServiceImplementation  implements GameService {
         gameRepository.save(game);
     }
 
+    @Override
+    public void updateGamePatch(String id, String title, String platform, String score, String genre, Character editorsChoice) {
+        Long gameId = Long.parseLong(id);
+        Optional<Game> gameOptional = gameRepository.findById(gameId);
+
+        Game game = gameOptional.get();
+        game.setTitle(title);
+        game.setPlatform(platform);
+        game.setGenre(genre);
+        game.setScore(Double.parseDouble(score));
+        game.setEditors_choice(editorsChoice);
+
+        gameRepository.save(game);
+    }
 
 
 }

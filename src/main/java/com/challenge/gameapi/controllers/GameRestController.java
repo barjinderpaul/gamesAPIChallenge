@@ -63,4 +63,15 @@ public class GameRestController {
                            @RequestParam(value = "editorsChoice", required = false) Character editorsChoice){
         gameService.updateGame(id, title, platform, score, genre, editorsChoice);
     }
+
+    @PatchMapping(value = "/games/{id}")
+    public void updateGamePatch(@PathVariable("id") String id,
+                           @RequestParam(value = "title", required = false) String title,
+                           @RequestParam(value = "score", required = false) String score,
+                           @RequestParam(value = "platform", required = false) String platform,
+                           @RequestParam(value = "genre", required = false) String genre,
+                           @RequestParam(value = "editorsChoice", required = false) Character editorsChoice){
+        gameService.updateGamePatch(id, title, platform, score, genre, editorsChoice);
+    }
+
 }
