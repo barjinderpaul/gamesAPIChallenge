@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +26,11 @@ public class GameRestController {
 
     @Autowired
     GameService gameService;
+
+    @GetMapping(value = "/")
+    public ModelAndView renderSwaggerPage(){
+        return new ModelAndView("redirect:/swagger-ui.html#/");
+    }
 
     @PostMapping(value = "/upload", consumes = "text/csv")
     public void uploadSimple(@RequestBody InputStream body) throws IOException {
