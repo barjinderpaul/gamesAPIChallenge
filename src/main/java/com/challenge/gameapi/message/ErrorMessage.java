@@ -15,7 +15,7 @@ public class ErrorMessage {
     private String documentation;
     private HttpStatus httpStatus;
 
-    public ErrorMessage(){
+    public ErrorMessage() {
 
     }
 

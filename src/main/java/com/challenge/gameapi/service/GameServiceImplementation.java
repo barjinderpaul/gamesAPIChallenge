@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class GameServiceImplementation  implements GameService {
+public class GameServiceImplementation implements GameService {
 
     @Autowired
     GameRepository gameRepository;
@@ -19,49 +19,48 @@ public class GameServiceImplementation  implements GameService {
     private void isValidId(String id) {
         Long gameId;
         try {
-            gameId  = Long.parseLong(id);
-        }
-        catch(NumberFormatException e) {
+            gameId = Long.parseLong(id);
+        } catch (NumberFormatException e) {
             throw new InvalidArgumentException("Please enter a valid id");
         }
 
     }
+
     private Boolean isValidTitle(String title) {
-        if(title == null || title.trim().equals("")) {
+        if (title == null || title.trim().equals("")) {
             throw new InvalidArgumentException("Please enter a valid title");
         }
         return true;
     }
 
-    private Boolean isValidPlatform(String platform){
-        if (platform == null || platform.trim().equals("")){
+    private Boolean isValidPlatform(String platform) {
+        if (platform == null || platform.trim().equals("")) {
             throw new InvalidArgumentException("Please enter a valid platform");
         }
         return true;
     }
 
-    private Boolean isValidGenre(String genre){
-        if (genre == null || genre.trim().equals("")){
+    private Boolean isValidGenre(String genre) {
+        if (genre == null || genre.trim().equals("")) {
             throw new InvalidArgumentException("Please enter a valid genre");
         }
         return true;
     }
 
-    private Boolean isValidScore(String score){
-        if (score == null || score.trim().equals("")){
+    private Boolean isValidScore(String score) {
+        if (score == null || score.trim().equals("")) {
             throw new InvalidArgumentException("Please enter a valid score");
         }
         try {
-            Double scoreDouble  = Double.parseDouble(score);
-        }
-        catch (NumberFormatException e) {
+            Double scoreDouble = Double.parseDouble(score);
+        } catch (NumberFormatException e) {
             throw new InvalidArgumentException("Please enter a valid score");
         }
         return true;
     }
 
-    private Boolean isValidEditorsChoice(String editorsChoice){
-        if (editorsChoice == null || editorsChoice.equals("") || (!editorsChoice.toLowerCase().equals("y") && !editorsChoice.toLowerCase().equals("n")) ){
+    private Boolean isValidEditorsChoice(String editorsChoice) {
+        if (editorsChoice == null || editorsChoice.equals("") || (!editorsChoice.toLowerCase().equals("y") && !editorsChoice.toLowerCase().equals("n"))) {
             throw new InvalidArgumentException("Please enter a valid editors choice");
         }
         return true;
@@ -82,19 +81,21 @@ public class GameServiceImplementation  implements GameService {
 
     @Override
     public List<Game> findAll() {
-       return gameRepository.findAll();
+        return gameRepository.findAll();
     }
 
     @Override
     public List<Game> findAllByTitle(String title) {
-        if(!isValidTitle(title)) { return new ArrayList<>(); }
+        if (!isValidTitle(title)) {
+            return new ArrayList<>();
+        }
         return gameRepository.findAllByTitle(title);
     }
 
     @Override
     public void saveGame(String title, String platform, String score, String genre, String editorsChoice) {
 
-        isValidGame(title,platform,score,genre,editorsChoice);
+        isValidGame(title, platform, score, genre, editorsChoice);
 
         Game game = new Game();
         game.setTitle(title);
@@ -109,12 +110,12 @@ public class GameServiceImplementation  implements GameService {
 
     @Override
     public void updateGame(String id, String title, String platform, String score, String genre, String editorsChoice) {
-        isValidGame(title,platform,score,genre,editorsChoice);
+        isValidGame(title, platform, score, genre, editorsChoice);
         isValidId(id);
         Long gameId = Long.parseLong(id);
 
         Optional<Game> gameOptional = gameRepository.findById(gameId);
-        if(!gameOptional.isPresent()){
+        if (!gameOptional.isPresent()) {
             throw new InvalidArgumentException("Game with id : " + id + " not found");
         }
         Game game = gameOptional.get();
@@ -134,25 +135,25 @@ public class GameServiceImplementation  implements GameService {
         Long gameId = Long.parseLong(id);
 
         Optional<Game> gameOptional = gameRepository.findById(gameId);
-        if(!gameOptional.isPresent()){
+        if (!gameOptional.isPresent()) {
             throw new InvalidArgumentException("Game with id : " + id + " not found");
         }
 
         Game game = gameOptional.get();
 
-        if(isValidTitle(title)){
+        if (isValidTitle(title)) {
             game.setTitle(title);
         }
-        if(isValidPlatform(platform)){
+        if (isValidPlatform(platform)) {
             game.setPlatform(platform);
         }
-        if(isValidGenre(genre)){
+        if (isValidGenre(genre)) {
             game.setGenre(genre);
         }
-        if(isValidScore(score)){
+        if (isValidScore(score)) {
             game.setScore(Double.parseDouble(score));
         }
-        if(isValidEditorsChoice(editorsChoice)){
+        if (isValidEditorsChoice(editorsChoice)) {
             game.setEditors_choice(editorsChoice.toUpperCase().charAt(0));
         }
 
@@ -163,8 +164,8 @@ public class GameServiceImplementation  implements GameService {
     public void deleteGame(String id) {
         isValidId(id);
         Long gameId = Long.parseLong(id);
-        Optional<Game> gameOptional  = gameRepository.findById(gameId);
-        if(!gameOptional.isPresent()){
+        Optional<Game> gameOptional = gameRepository.findById(gameId);
+        if (!gameOptional.isPresent()) {
             throw new InvalidArgumentException("Game with id : " + id + " not found");
         }
         gameRepository.deleteById(gameId);
@@ -174,8 +175,8 @@ public class GameServiceImplementation  implements GameService {
     public Game getSingleGame(String id) {
         isValidId(id);
         Long gameId = Long.parseLong(id);
-        Optional<Game> gameOptional  = gameRepository.findById(gameId);
-        if(!gameOptional.isPresent()){
+        Optional<Game> gameOptional = gameRepository.findById(gameId);
+        if (!gameOptional.isPresent()) {
             throw new InvalidArgumentException("Game with id : " + id + " not found");
         }
         return gameOptional.get();

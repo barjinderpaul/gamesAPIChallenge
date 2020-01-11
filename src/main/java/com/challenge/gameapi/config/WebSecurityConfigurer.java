@@ -49,24 +49,24 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-                http.csrf().disable()
+        http.csrf().disable()
                 .authorizeRequests()
-                    .antMatchers("/").permitAll()
-                    .antMatchers("/swagger-ui.html").permitAll()
-                    .antMatchers(HttpMethod.GET,"/games").permitAll()
-                    .antMatchers(HttpMethod.GET,"/games/{id}").permitAll()
-                    .antMatchers(HttpMethod.POST,"/users").permitAll()
-                    .antMatchers(HttpMethod.POST,"/authenticate").permitAll()
-                        .anyRequest()
-                    .authenticated()
-                    .and()
+                .antMatchers("/").permitAll()
+                .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers(HttpMethod.GET, "/games").permitAll()
+                .antMatchers(HttpMethod.GET, "/games/{id}").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
+                .antMatchers(HttpMethod.POST, "/authenticate").permitAll()
+                .anyRequest()
+                .authenticated()
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder () {
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

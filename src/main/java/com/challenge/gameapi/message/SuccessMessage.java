@@ -14,7 +14,7 @@ public class SuccessMessage {
     private String successMessage;
     private HttpStatus httpStatus;
 
-    public SuccessMessage(){
+    public SuccessMessage() {
 
     }
 

@@ -14,8 +14,8 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
     private static final long serialVersionUID = -2550185165626007488L;
-    public static final long JWT_TOKEN_VALIDITY = 60*60;
-    private String secret="secret";
+    public static final long JWT_TOKEN_VALIDITY = 60 * 60;
+    private String secret = "secret";
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);

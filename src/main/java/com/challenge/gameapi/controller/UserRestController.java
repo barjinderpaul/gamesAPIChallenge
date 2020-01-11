@@ -21,17 +21,17 @@ public class UserRestController {
 
 
     @GetMapping("/users")
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 
     @PostMapping("/users")
-    public ResponseEntity<SuccessMessage> adduser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email){
+    public ResponseEntity<SuccessMessage> adduser(@RequestParam("username") String username, @RequestParam("password") String password, @RequestParam("email") String email) {
 
         Long userId = userService.saveUser(username, password, email);
         HttpStatus httpStatus = HttpStatus.CREATED;
-        SuccessMessage successMessage = new SuccessMessage(200,"User created successfully",httpStatus);
-        return new ResponseEntity<SuccessMessage>(successMessage,httpStatus);
+        SuccessMessage successMessage = new SuccessMessage(200, "User created successfully", httpStatus);
+        return new ResponseEntity<SuccessMessage>(successMessage, httpStatus);
     }
 
 }

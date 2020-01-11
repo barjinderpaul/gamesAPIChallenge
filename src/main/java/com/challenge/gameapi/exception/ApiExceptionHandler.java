@@ -20,38 +20,38 @@ public class ApiExceptionHandler {
                 "Go to /swagger-ui.html#/ for the documentation",
                 HttpStatus.NOT_FOUND
         );
-        log.error("Not found error",e);
-        return new ResponseEntity<>(errorMessage,httpStatus);
+        log.error("Not found error", e);
+        return new ResponseEntity<>(errorMessage, httpStatus);
     }
 
     @ExceptionHandler(value = {InvalidArgumentException.class})
-    public ResponseEntity<Object> handleInvalidArgumentException(InvalidArgumentException e){
+    public ResponseEntity<Object> handleInvalidArgumentException(InvalidArgumentException e) {
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         ErrorMessage errorMessage = new ErrorMessage(
-            400,
-            e.getMessage(),
-            "Go to /swagger-ui.html#/ for the documentation",
-            HttpStatus.BAD_REQUEST
+                400,
+                e.getMessage(),
+                "Go to /swagger-ui.html#/ for the documentation",
+                HttpStatus.BAD_REQUEST
         );
-        log.error("Invalid Arguments passed",e);
-        return new ResponseEntity<>(errorMessage,httpStatus);
+        log.error("Invalid Arguments passed", e);
+        return new ResponseEntity<>(errorMessage, httpStatus);
     }
 
-    @ExceptionHandler(value={UnauthorizedAccessException.class})
-    public ResponseEntity<Object> handleUnauthorizedAccessException(UnauthorizedAccessException e){
+    @ExceptionHandler(value = {UnauthorizedAccessException.class})
+    public ResponseEntity<Object> handleUnauthorizedAccessException(UnauthorizedAccessException e) {
         HttpStatus httpStatus = HttpStatus.FORBIDDEN;
         ErrorMessage errorMessage = new ErrorMessage(
-          403,
-          e.getMessage(),
-        "Go to /swagger-ui.html#/ for the documentation",
-        HttpStatus.FORBIDDEN
+                403,
+                e.getMessage(),
+                "Go to /swagger-ui.html#/ for the documentation",
+                HttpStatus.FORBIDDEN
         );
-        log.error("Unauthorized access ",e);
-        return new ResponseEntity<>(errorMessage,httpStatus);
+        log.error("Unauthorized access ", e);
+        return new ResponseEntity<>(errorMessage, httpStatus);
     }
 
     @ExceptionHandler(value = {GenericException.class})
-    public ResponseEntity<Object> handleGenericException(GenericException e){
+    public ResponseEntity<Object> handleGenericException(GenericException e) {
         HttpStatus httpStatus = HttpStatus.INTERNAL_SERVER_ERROR;
         ErrorMessage errorMessage = new ErrorMessage(
                 500,
@@ -59,7 +59,7 @@ public class ApiExceptionHandler {
                 "Go to /swagger-ui.html#/ for the documentation",
                 HttpStatus.INTERNAL_SERVER_ERROR
         );
-        log.error("Some unknown exception occured, please check stack trace",e);
-        return new ResponseEntity<>(errorMessage,httpStatus);
+        log.error("Some unknown exception occured, please check stack trace", e);
+        return new ResponseEntity<>(errorMessage, httpStatus);
     }
 }

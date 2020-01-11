@@ -18,13 +18,13 @@ public class UserServiceImplementation implements UserService {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private void isValidUser(String username, String email, String password){
+    private void isValidUser(String username, String email, String password) {
         User user = userRepository.findByUsername(username);
-        if(user!= null) {
+        if (user != null) {
             throw new InvalidArgumentException("User with username: " + username + " already exists");
         }
         User userByEmail = userRepository.findByEmail(email);
-        if(userByEmail != null) {
+        if (userByEmail != null) {
             throw new InvalidArgumentException("User with email : " + email + " already exists");
         }
     }
@@ -41,7 +41,7 @@ public class UserServiceImplementation implements UserService {
 
     @Override
     public Long saveUser(String username, String password, String email) {
-        isValidUser(username,email,password);
+        isValidUser(username, email, password);
 
         User user = new User();
 
